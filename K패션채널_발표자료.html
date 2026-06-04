@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>글로벌 K-패션 유튜브 채널 — 전략 발표자료</title>
+<style>
+  :root {
+    --bg: #0f0a1e;
+    --bg-card: #1a1430;
+    --bg-card-2: #221a3d;
+    --purple: #8b5cf6;
+    --purple-light: #a78bfa;
+    --purple-soft: #c4b5fd;
+    --pink: #ec4899;
+    --gold: #fbbf24;
+    --green: #34d399;
+    --text: #f5f3ff;
+    --text-dim: #b8b0d4;
+    --border: #332a52;
+    --radius: 18px;
+    --shadow: 0 18px 50px rgba(0,0,0,.45);
+    --font: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- Deck shell ---------- */
+  .deck { position: relative; width: 100vw; height: 100vh; }
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    padding: 4.2vh 6vw 8vh;
+    overflow-y: auto;
+    animation: fade .45s ease;
+  }
+  .slide.active { display: flex; }
+  @keyframes fade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  /* gradient backdrop accents */
+  .slide::before {
+    content: "";
+    position: fixed;
+    top: -20%; right: -10%;
+    width: 55vw; height: 55vw;
+    background: radial-gradient(circle, rgba(139,92,246,.22), transparent 62%);
+    pointer-events: none; z-index: 0;
+  }
+  .slide > * { position: relative; z-index: 1; }
+
+  /* ---------- Typography ---------- */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px; font-weight: 700; letter-spacing: .12em;
+    color: var(--purple-light); text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--purple); border-radius: 2px; }
+  h1 { font-size: clamp(30px, 5vw, 58px); font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
+  h2 { font-size: clamp(24px, 3.4vw, 40px); font-weight: 800; line-height: 1.15; letter-spacing: -.02em; margin-bottom: 6px; }
+  h2 .accent { color: var(--purple-light); }
+  .sub { font-size: clamp(15px, 1.5vw, 19px); color: var(--text-dim); margin-bottom: 30px; max-width: 60ch; }
+  p { line-height: 1.6; }
+  .hl { color: var(--gold); font-weight: 700; }
+  .hl-p { color: var(--purple-soft); font-weight: 700; }
+  .hl-g { color: var(--green); font-weight: 700; }
+  .hl-pk { color: var(--pink); font-weight: 700; }
+
+  /* ---------- Cards / grids ---------- */
+  .grid { display: grid; gap: 18px; }
+  .g2 { grid-template-columns: repeat(2, 1fr); }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 22px;
+  }
+  .card.glow { box-shadow: 0 0 0 1px rgba(139,92,246,.4), 0 14px 36px rgba(139,92,246,.18); border-color: var(--purple); }
+  .card h3 { font-size: 19px; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center; gap: 9px; }
+  .card p { font-size: 14.5px; color: var(--text-dim); }
+  .badge {
+    display: inline-block; font-size: 12px; font-weight: 800; padding: 4px 10px;
+    border-radius: 999px; background: rgba(139,92,246,.18); color: var(--purple-light);
+    border: 1px solid rgba(139,92,246,.35);
+  }
+  .badge.gold { background: rgba(251,191,36,.15); color: var(--gold); border-color: rgba(251,191,36,.35); }
+  .badge.green { background: rgba(52,211,153,.15); color: var(--green); border-color: rgba(52,211,153,.35); }
+  .badge.pink { background: rgba(236,72,153,.15); color: var(--pink); border-color: rgba(236,72,153,.35); }
+  .num { font-size: 40px; font-weight: 800; color: var(--purple-light); line-height: 1; }
+  .stat { font-size: clamp(28px,3.6vw,46px); font-weight: 800; color: var(--gold); }
+  .stat-l { font-size: 14px; color: var(--text-dim); margin-top: 4px; }
+
+  /* ---------- Tables ---------- */
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--purple-light); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+  tbody tr:hover { background: rgba(139,92,246,.06); }
+  td .flag { font-size: 18px; }
+  .rank { font-weight: 800; color: var(--gold); }
+
+  /* ---------- Lists ---------- */
+  ul.clean { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  ul.clean li { display: flex; gap: 12px; align-items: flex-start; font-size: 15.5px; line-height: 1.5; }
+  ul.clean li .ico { flex: none; width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font-size: 14px; font-weight: 800; background: rgba(139,92,246,.18); color: var(--purple-light); }
+  ul.clean li .ico.g { background: rgba(52,211,153,.16); color: var(--green); }
+  ul.clean li .ico.gd { background: rgba(251,191,36,.16); color: var(--gold); }
+
+  /* ---------- Timeline ---------- */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-row { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-left: 2px solid var(--border); margin-left: 10px; padding-left: 26px; position: relative; }
+  .tl-row::before { content: ""; position: absolute; left: -8px; top: 22px; width: 14px; height: 14px; border-radius: 50%; background: var(--purple); box-shadow: 0 0 0 4px var(--bg); }
+  .tl-row .when { font-weight: 800; color: var(--purple-light); font-size: 15px; }
+  .tl-row .what { font-size: 15px; line-height: 1.55; }
+  .tl-row .what b { color: var(--text); }
+
+  /* ---------- Script box ---------- */
+  .script { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .script-row { display: grid; grid-template-columns: 70px 1fr 1fr; gap: 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .script-row:last-child { border-bottom: none; }
+  .script-row.head { background: var(--bg-card-2); font-weight: 800; color: var(--purple-light); font-size: 12.5px; text-transform: uppercase; letter-spacing: .05em; }
+  .script-row > div { padding: 13px 15px; border-right: 1px solid var(--border); }
+  .script-row > div:last-child { border-right: none; }
+  .script-row .t { color: var(--gold); font-weight: 800; }
+  .script-row .vo { color: var(--text); }
+  .script-row .vo .en { display: block; font-weight: 700; }
+  .script-row .vo .ko { display: block; color: var(--text-dim); font-size: 12.5px; margin-top: 3px; }
+  .script-row .ov { color: var(--green); font-weight: 700; }
+
+  /* thumbnail mock */
+  .thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .thumb { aspect-ratio: 9/12; border-radius: 14px; background: linear-gradient(160deg, var(--bg-card-2), var(--bg-card)); border: 1px solid var(--border); padding: 12px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+  .thumb .tag { font-size: 10px; font-weight: 800; color: var(--purple-light); letter-spacing: .05em; }
+  .thumb .big { font-size: 17px; font-weight: 900; line-height: 1.1; color: #fff; }
+  .thumb .big .y { color: var(--gold); }
+  .thumb .big .p { color: var(--pink); }
+
+  /* ---------- Footer / nav ---------- */
+  .foot { position: fixed; bottom: 18px; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 6vw; z-index: 30; pointer-events: none; }
+  .brand { font-size: 13px; color: var(--text-dim); font-weight: 600; }
+  .brand b { color: var(--purple-light); }
+  .nav { display: flex; align-items: center; gap: 10px; pointer-events: auto; }
+  .nav button { width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); font-size: 18px; cursor: pointer; transition: .15s; }
+  .nav button:hover { background: var(--purple); border-color: var(--purple); }
+  .counter { font-size: 13px; color: var(--text-dim); min-width: 52px; text-align: center; font-variant-numeric: tabular-nums; }
+  .progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--purple), var(--pink)); z-index: 40; transition: width .35s ease; }
+
+  /* cover specifics */
+  .cover { justify-content: center; align-items: flex-start; }
+  .cover .kpop { font-size: clamp(46px,8vw,96px); font-weight: 900; letter-spacing: -.03em; line-height: .98; }
+  .cover .kpop .g { background: linear-gradient(120deg, var(--purple-light), var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+
+  .two-col { display: grid; grid-template-columns: 1.1fr 1fr; gap: 26px; align-items: start; }
+  .note { font-size: 13px; color: var(--text-dim); margin-top: 14px; }
+  .kbd { font-size: 12px; padding: 2px 7px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-card); color: var(--text-dim); }
+
+  @media (max-width: 820px) {
+    .g2,.g3,.g4,.two-col { grid-template-columns: 1fr; }
+    .thumbs { grid-template-columns: repeat(2,1fr); }
+    .script-row { grid-template-columns: 54px 1fr; }
+    .script-row .ov { display: none; }
+    .tl-row { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+  <!-- 1. COVER -->
+  <section class="slide active cover">
+    <div class="eyebrow">GOYU STUDIO · YOUTUBE STRATEGY</div>
+    <div class="kpop">글로벌 <span class="g">K-패션</span><br>유튜브 쇼츠 채널</div>
+    <p class="sub" style="margin-top:22px">외국인 관광객을 겨냥한 한국 패션·쇼핑 채널 — 콘텐츠 10개 기획 · 풀 대본 · 수익화 · 실행 로드맵까지 한 장에.</p>
+    <div class="pill-row">
+      <span class="badge gold">검증 3회 완료</span>
+      <span class="badge">한국 계정 그대로</span>
+      <span class="badge green">AI 보이스 가능</span>
+      <span class="badge pink">미국 Gen-Z 타겟</span>
+    </div>
+    <p class="note">← → 방향키 또는 아래 버튼으로 이동 · 총 12장</p>
+  </section>
+
+  <!-- 2. 한눈에 보기 -->
+  <section class="slide">
+    <div class="eyebrow">한눈에 보기</div>
+    <h2>딱 <span class="accent">한 줄</span>로 정리하면</h2>
+    <p class="sub">한국에서 영어로 찍어 → 전 세계 영어권에 배달 → 제휴·가이드 판매로 돈 번다.</p>
+    <div class="grid g4">
+      <div class="card"><div class="num">WHO</div><h3 style="margin-top:10px">미국 Gen-Z</h3><p>한국 여행·쇼핑에 관심 폭발. 스트릿웨어·가격충격·빈티지에 반응.</p></div>
+      <div class="card"><div class="num">WHAT</div><h3 style="margin-top:10px">하울·룩북</h3><p>성수·홍대 패션 쇼핑을 짧고 강하게. 가격($)·Tax Refund가 핵심.</p></div>
+      <div class="card"><div class="num">HOW</div><h3 style="margin-top:10px">한국 계정+영어</h3><p>VPN 금지. 동영상 언어 English + 100% 영어 메타데이터.</p></div>
+      <div class="card glow"><div class="num">$$$</div><h3 style="margin-top:10px">2차 수익</h3><p>제휴(YesStyle)+Gumroad 맵+협찬. 쇼츠 광고는 보너스.</p></div>
+    </div>
+    <div class="card" style="margin-top:18px;background:var(--bg-card-2)">
+      <p style="font-size:16px"><span class="hl">핵심 마인드셋:</span> 쇼츠는 돈이 아니라 <span class="hl-p">트래픽 깔때기</span>다. 조회수로 사람을 모으고, <span class="hl-g">제휴 링크·가이드 판매·협찬</span>으로 수익을 낸다.</p>
+    </div>
+  </section>
+
+  <!-- 3. 왜 지금인가 (검증) -->
+  <section class="slide">
+    <div class="eyebrow">왜 지금인가 · 검증 데이터</div>
+    <h2>시장이 <span class="accent">증명</span>됐다</h2>
+    <p class="sub">PDF 전략을 웹에서 3회 교차검증한 핵심 수치. 수요·트래픽·수익 3박자가 맞는다.</p>
+    <div class="grid g4">
+      <div class="card"><div class="stat">+49%</div><div class="stat-l">무신사 스탠다드 외국인 매출 (YoY), 그중 70%가 MZ세대</div></div>
+      <div class="card"><div class="stat">$1.2B</div><div class="stat-l">미국 연간 K-패션 매출 · 수입 +31%</div></div>
+      <div class="card"><div class="stat">3~7¢</div><div class="stat-l">쇼츠 광고 RPM (매우 낮음) → 2차 수익 필수</div></div>
+      <div class="card"><div class="stat">$5~15K</div><div class="stat-l">브랜드 협찬 건당 · 성공 크리에이터 수익의 45%</div></div>
+    </div>
+    <div class="two-col" style="margin-top:20px">
+      <div class="card glow">
+        <h3>✅ 검증 통과</h3>
+        <ul class="clean" style="margin-top:8px">
+          <li><span class="ico g">✓</span><span>한국 계정+영어 메타데이터 = 영어권 배달 (사실)</span></li>
+          <li><span class="ico g">✓</span><span>VPN 타국 계정 = 수익 회수·계정 종료 위험 (사실)</span></li>
+          <li><span class="ico g">✓</span><span>K-패션 외국 Gen-Z 수요 폭발 (사실)</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>⚠️ 머릿속 보정 2가지</h3>
+        <ul class="clean" style="margin-top:8px">
+          <li><span class="ico gd">!</span><span>CPM 1위는 미국 아닌 <b>호주($39.83)</b> — 단 미국은 트래픽 압도적이라 메인 타겟 유지</span></li>
+          <li><span class="ico gd">!</span><span>Tax Refund: 1.5만~100만원, 100만 미만 즉시환급, 실수령 4~7%, <b>여권 필수</b></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 국가별 타겟 -->
+  <section class="slide">
+    <div class="eyebrow">국가별 리서치 · 어디를 노릴까</div>
+    <h2>K-패션을 가장 <span class="accent">사랑하는 나라</span></h2>
+    <p class="sub">영어권 메인 = 미국 > 영국 > 필리핀 > 말레이시아. 일본·중국·태국은 비영어권이지만 거대 수요 → 일본어 자막만 추가.</p>
+    <table>
+      <thead><tr><th>순위</th><th>국가</th><th>선호 스타일·콘텐츠</th><th>성장 지표</th><th>우선순위</th></tr></thead>
+      <tbody>
+        <tr><td class="rank">1</td><td><span class="flag">🇺🇸</span> 미국</td><td>스트릿웨어(무신사·아더에러), comfort+edge</td><td>수입 +31% · $1.2B</td><td><span class="badge gold">⭐ 메인</span></td></tr>
+        <tr><td class="rank">2</td><td><span class="flag">🇯🇵</span> 일본</td><td>젠더리스, 파스텔 무드</td><td>10·20대 28% 선호</td><td><span class="badge">⭐ 방한최다</span></td></tr>
+        <tr><td class="rank">3</td><td><span class="flag">🇨🇳</span> 중국</td><td>미니드레스, 유니섹스 스트릿</td><td>매출 +43%</td><td><span class="badge">⭐</span></td></tr>
+        <tr><td class="rank">5</td><td><span class="flag">🇵🇭</span> 필리핀</td><td>한국 스트릿, K-드라마 룩</td><td>Gen-Z 35% 구매</td><td><span class="badge green">⭐ 영어권</span></td></tr>
+        <tr><td class="rank">9</td><td><span class="flag">🇬🇧</span> 영국</td><td>오버사이즈 니트, 젠더플루이드</td><td>매출 +30%</td><td><span class="badge green">⭐ CPM↑</span></td></tr>
+        <tr><td class="rank">10</td><td><span class="flag">🇲🇾</span> 말레이시아</td><td>모디스트 스트릿, 파스텔</td><td>수입 +38%</td><td><span class="badge green">⭐ 영어권</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 5. 어떤 영상을 보는가 -->
+  <section class="slide">
+    <div class="eyebrow">콘텐츠 포맷 · 무엇을 찾아보나</div>
+    <h2>실제로 <span class="accent">찾아보는</span> 4대 포맷</h2>
+    <p class="sub">Gen-Z가 유튜브에서 패션을 소비하는 방식. 이 4개를 로테이션하면 된다.</p>
+    <div class="grid g4">
+      <div class="card glow"><span class="badge gold">최강</span><h3 style="margin-top:12px">🛍️ 하울</h3><p>쇼핑한 거 펼쳐 보여주기. "Under $30" 가격 충격이 핵심.</p></div>
+      <div class="card"><span class="badge">인기</span><h3 style="margin-top:12px">👗 룩북 / OOTD</h3><p>코디 모음·스타일링. 미감 키워드(Acubi 등)와 결합.</p></div>
+      <div class="card"><span class="badge">친근</span><h3 style="margin-top:12px">🎬 GRWM</h3><p>준비 과정 + 매장 방문. 데이트·여행 시나리오.</p></div>
+      <div class="card"><span class="badge">바이럴</span><h3 style="margin-top:12px">♻️ 빈티지</h3><p>구제·세컨핸드 발굴. "Starting at $5" 헌팅 재미.</p></div>
+    </div>
+    <div class="card" style="margin-top:18px;background:var(--bg-card-2)">
+      <h3>🔥 즉시 먹히는 앵글</h3>
+      <ul class="clean" style="margin-top:10px">
+        <li><span class="ico gd">$</span><span><b>가격 충격 + Tax Refund</b> — "Everything Under $30", "Save 10% instantly"</span></li>
+        <li><span class="ico">A</span><span><b>미감 키워드 콕 집기</b> — Acubi · soft grunge · genderless · Y2K (검색이 몰리는 단어)</span></li>
+        <li><span class="ico">K</span><span><b>K-pop 레퍼런스</b> — 동남아 참여도 +40%. 런던패션위크 등 이벤트 타이밍에 올리면 바이럴</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. 셀링포인트 + 후킹 -->
+  <section class="slide">
+    <div class="eyebrow">셀링 포인트 · 3초 후킹 공식</div>
+    <h2>처음 <span class="accent">3초</span>에 모든 게 결정된다</h2>
+    <p class="sub">쇼츠는 1~3초에 이탈이 갈린다. 외국인의 '결핍'을 즉시 건드려라.</p>
+    <div class="two-col">
+      <div class="card glow">
+        <h3>⚡ 후킹 4원칙</h3>
+        <ul class="clean" style="margin-top:10px">
+          <li><span class="ico">1</span><span><b>상단 큰 영어 텍스트</b> — 번지르르함 X, 목적 분명한 문장</span></li>
+          <li><span class="ico">2</span><span><b>첫 컷 = 시각 자극</b> — 화려한 행거 / 힙한 코디 / 영수증 클로즈업</span></li>
+          <li><span class="ico">3</span><span><b>가격 $ 병기</b> — 모든 숫자에 달러, 사이즈는 cm</span></li>
+          <li><span class="ico">4</span><span><b>Tax Refund 자막</b> — "Instant Tax Refund" = 저장·공유 폭발</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>💎 우리만의 셀링 포인트</h3>
+        <ul class="clean" style="margin-top:10px">
+          <li><span class="ico g">✓</span><span><b>현지인 시점</b> — 외국 유튜버가 못 주는 "진짜 좌표"와 동선</span></li>
+          <li><span class="ico g">✓</span><span><b>가격 투명성</b> — KRW+$ 비교로 "한국이 개이득" 증명</span></li>
+          <li><span class="ico g">✓</span><span><b>실행 가능성</b> — 매장 위치·환급 여부까지 바로 행동으로</span></li>
+          <li><span class="ico g">✓</span><span><b>AI 보이스 페이스리스</b> — 얼굴·영어 부담 없이 양산 가능</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. 콘텐츠 10개 기획 -->
+  <section class="slide">
+    <div class="eyebrow">콘텐츠 기획 · 미국 Gen-Z 타겟</div>
+    <h2>첫 <span class="accent">10편</span> 기획안 + 영어 제목</h2>
+    <p class="sub">하울·룩북·빈티지·GRWM을 로테이션. 제목 옆은 썸네일에 박을 큰 문구.</p>
+    <table>
+      <thead><tr><th>#</th><th>포맷</th><th>영어 제목 (제목 그대로 사용)</th><th>썸네일 문구</th></tr></thead>
+      <tbody>
+        <tr><td class="rank">1</td><td><span class="badge gold">하울</span></td><td>$200 Musinsa Haul — Everything Under $30</td><td><b class="hl">UNDER $30?!</b></td></tr>
+        <tr><td class="rank">2</td><td><span class="badge pink">가격</span></td><td>This Brand is 40% CHEAPER in Korea 🇰🇷</td><td><b class="hl-pk">$120 → $70</b></td></tr>
+        <tr><td class="rank">3</td><td><span class="badge">빈티지</span></td><td>Insane Seoul Thrift Stores (Starting at $5)</td><td><b class="hl">FROM $5</b></td></tr>
+        <tr><td class="rank">4</td><td><span class="badge">룩북</span></td><td>How Seoul Gen-Z ACTUALLY Dress in 2026</td><td>SEOUL STREET</td></tr>
+        <tr><td class="rank">5</td><td><span class="badge gold">하울</span></td><td>Where K-pop Idols Actually Shop in Seoul</td><td>IDOL'S PICK</td></tr>
+        <tr><td class="rank">6</td><td><span class="badge">룩북</span></td><td>Acubi Style Explained (+ Where to Buy)</td><td>ACUBI 101</td></tr>
+        <tr><td class="rank">7</td><td><span class="badge pink">동선</span></td><td>Don't Go to Hongdae Without Watching This</td><td><b class="hl-pk">❌ WAIT!</b></td></tr>
+        <tr><td class="rank">8</td><td><span class="badge green">꿀팁</span></td><td>How to Save 10% on EVERY Purchase in Seoul</td><td><b class="hl-g">SAVE 10%</b></td></tr>
+        <tr><td class="rank">9</td><td><span class="badge">GRWM</span></td><td>GRWM: Seoul Café Date in K-Fashion</td><td>CAFÉ DATE</td></tr>
+        <tr><td class="rank">10</td><td><span class="badge">동선</span></td><td>Seongsu = The Brooklyn of Seoul (Shop Map)</td><td>SEONGSU MAP</td></tr>
+      </tbody>
+    </table>
+    <p class="note">팁: 1·2·3번처럼 <span class="hl">숫자·가격이 박힌</span> 영상이 초반 알고리즘에 가장 잘 걸린다. 여기부터 시작.</p>
+  </section>
+
+  <!-- 8. 풀 대본 -->
+  <section class="slide">
+    <div class="eyebrow">풀 대본 · 1편 (AI 보이스용)</div>
+    <h2>#1 <span class="accent">"$200 Musinsa Haul"</span> — 38초</h2>
+    <p class="sub">왼쪽=시간 / 가운데=나레이션(영어+한글) / 오른쪽=화면 텍스트·B롤. ChatGPT로 영어 다듬고 AI TTS 입히면 끝.</p>
+    <div class="script">
+      <div class="script-row head"><div>TIME</div><div>VOICEOVER (AI TTS)</div><div>ON-SCREEN / B-ROLL</div></div>
+      <div class="script-row"><div class="t">0–3s</div><div class="vo"><span class="en">"I spent $200 at Musinsa in Seoul… and got 8 pieces."</span><span class="ko">서울 무신사에서 $200 썼는데 8벌 건졌어요.</span></div><div class="ov">상단 텍스트 "EVERYTHING UNDER $30" · 쇼핑백 쏟는 컷</div></div>
+      <div class="script-row"><div class="t">3–10s</div><div class="vo"><span class="en">"This oversized tee? $18. Tax refund makes it $16."</span><span class="ko">이 오버핏 티 $18, 택스리펀 하면 $16.</span></div><div class="ov">티셔츠 클로즈업 · 가격 자막 "$18 → $16 💸"</div></div>
+      <div class="script-row"><div class="t">10–20s</div><div class="vo"><span class="en">"These cargo pants are $27 — half the US price."</span><span class="ko">이 카고팬츠 $27, 미국 가격의 절반.</span></div><div class="ov">착용 코디 샷 · "US $55 vs KR $27" 비교 자막</div></div>
+      <div class="script-row"><div class="t">20–30s</div><div class="vo"><span class="en">"Instant tax refund right at the counter. Just show your passport."</span><span class="ko">계산대에서 바로 즉시환급. 여권만 보여주면 끝.</span></div><div class="ov">초록 자막 "INSTANT TAX REFUND ✅ (passport needed)"</div></div>
+      <div class="script-row"><div class="t">30–38s</div><div class="vo"><span class="en">"Full shopping map in my bio. Save this before Seoul!"</span><span class="ko">쇼핑맵은 프로필 링크에. 서울 가기 전 저장!"</span></div><div class="ov">"SAVE 🔖 + MAP IN BIO" · 매장 외관 컷으로 마무리</div></div>
+    </div>
+    <p class="note">CTA 3종 항상: <span class="hl-p">저장(Save)</span> 유도 · <span class="hl-p">프로필 링크</span>(제휴/Gumroad 맵) · 댓글 질문 유도("Which one would you cop?").</p>
+  </section>
+
+  <!-- 9. 수익화 -->
+  <section class="slide">
+    <div class="eyebrow">수익화 · 어떻게 돈을 버나</div>
+    <h2>쇼츠 광고는 <span class="accent">보너스</span>, 진짜는 여기</h2>
+    <p class="sub">성공 크리에이터의 8%만 광고가 주수입. 아래 4가지를 쌓는다.</p>
+    <div class="grid g4">
+      <div class="card glow"><span class="badge gold">즉시 시작</span><h3 style="margin-top:12px">1. 제휴</h3><p><b>YesStyle</b> 최대 10%(쿠키 30일)·가입 쉬움. 무신사 글로벌, NET-A-PORTER 6%. 보유 트립닷컴·쿠팡.</p></div>
+      <div class="card"><span class="badge">마진 최고</span><h3 style="margin-top:12px">2. 디지털</h3><p><b>Gumroad 서울 쇼핑맵</b> $5~$10(수수료 10%). 구글지도 레이어로 성수·홍대·한남 큐레이션.</p></div>
+      <div class="card"><span class="badge pink">성장 후 최대</span><h3 style="margin-top:12px">3. 협찬</h3><p>건당 <b>$2K~$15K</b>. 한국 브랜드 글로벌 진출 니즈 폭발 → 채널 키우면 인바운드.</p></div>
+      <div class="card"><span class="badge green">보너스</span><h3 style="margin-top:12px">4. YPP</h3><p>광고 배분·멤버십·Super Thanks. 요건: 구독 500 + 90일 쇼츠 300만 뷰.</p></div>
+    </div>
+    <div class="card" style="margin-top:18px;background:var(--bg-card-2)">
+      <p style="font-size:15px"><span class="hl">수익 순서:</span> 0~3개월 콘텐츠+<span class="hl-g">YesStyle 제휴</span>(요건 전에도 OK) → 3~4개월 YPP+<span class="hl-g">Gumroad 맵</span> → 4~6개월 첫 <span class="hl-g">협찬</span> → 6개월+ 복합 <span class="hl">월 $500+</span>. 운영 메일: goyu.studio.help@gmail.com</p>
+    </div>
+  </section>
+
+  <!-- 10. 해야할 일 순서 -->
+  <section class="slide">
+    <div class="eyebrow">실행 로드맵 · 무엇을 언제</div>
+    <h2>해야 할 일 <span class="accent">순서</span></h2>
+    <p class="sub">위에서 아래로 그대로 따라가면 된다.</p>
+    <div class="timeline">
+      <div class="tl-row"><div class="when">1주차<br>세팅</div><div class="what"><b>한국 계정으로 브랜드 채널 개설</b>(VPN ❌) · 채널명/소개 영어 · 콘텐츠 10개 기획 확정 · YesStyle 제휴 가입 · 첫 촬영지 답사(성수 or 홍대 무신사 스탠다드)</div></div>
+      <div class="tl-row"><div class="when">2주차<br>발사</div><div class="what"><b>쇼츠 3편 제작·업로드</b>(#1·#2·#3 가격 박힌 것부터) · 동영상 언어 English 체크 · $ 병기 + Tax Refund 자막 · 고정댓글에 제휴 링크 · Gumroad 맵 초안</div></div>
+      <div class="tl-row"><div class="when">1~2개월<br>학습</div><div class="what"><b>주 3~5편 꾸준히</b> · 알고리즘 학습시키기 · 터진 포맷 변주 반복 · 1편 1만 뷰 돌파 목표</div></div>
+      <div class="tl-row"><div class="when">3~4개월<br>수익화</div><div class="what"><b>구독 500 + 90일 300만 뷰</b> → YPP 신청 · Gumroad 쇼핑맵 정식 출시 · 일본어 자막 추가로 일본 시장 흡수</div></div>
+      <div class="tl-row"><div class="when">4~6개월<br>스케일</div><div class="what"><b>미디어킷 준비 → 첫 브랜드 협찬</b> · 바이럴 1편(100만 뷰+) 만들기 · 수익 다각화 월 $500+</div></div>
+    </div>
+  </section>
+
+  <!-- 11. 키포인트 & 팁 -->
+  <section class="slide">
+    <div class="eyebrow">키포인트 · 절대 잊지 말 것</div>
+    <h2>핵심 <span class="accent">체크리스트</span> & 팁</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3>📌 매 영상 체크</h3>
+        <ul class="clean" style="margin-top:10px">
+          <li><span class="ico g">✓</span><span>동영상 언어 = <b>English</b> 지정</span></li>
+          <li><span class="ico g">✓</span><span>제목·설명·자막·화면텍스트 <b>100% 영어</b></span></li>
+          <li><span class="ico g">✓</span><span>해시태그 <b>#kfashion #seoultravel #koreashopping #hongdae #seongsu</b></span></li>
+          <li><span class="ico g">✓</span><span>모든 가격 <b>$ 병기</b> + Tax Refund 한 줄</span></li>
+          <li><span class="ico g">✓</span><span>첫 3초 후킹 + <b>Save/링크/댓글</b> CTA</span></li>
+        </ul>
+      </div>
+      <div class="card glow">
+        <h3>🚫 하지 말 것 · 💡 팁</h3>
+        <ul class="clean" style="margin-top:10px">
+          <li><span class="ico gd">✗</span><span><b>VPN·타국 계정 금지</b> — 수익 회수·섀도우밴</span></li>
+          <li><span class="ico gd">✗</span><span>채널 거주국가 변경 금지(대한민국 유지)</span></li>
+          <li><span class="ico">💡</span><span>음원은 <b>유튜브 오디오 라이브러리</b>만(저작권)</span></li>
+          <li><span class="ico">💡</span><span>AI 합성 음성·영상은 <b>정직하게 표기</b></span></li>
+          <li><span class="ico">💡</span><span>데이터 보고 <b>터진 포맷에 더블다운</b></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px;background:var(--bg-card-2)">
+      <p style="font-size:15px"><span class="hl-pk">전략 한 줄:</span> 가격이 박힌 하울/빈티지로 <span class="hl-p">신규 시청자</span>를 후킹 → 동선·꿀팁 영상으로 <span class="hl-p">저장·구독</span> 전환 → 프로필 링크로 <span class="hl-g">제휴·가이드 판매</span> 수익. 이 깔때기를 반복한다.</p>
+    </div>
+  </section>
+
+  <!-- 12. 마무리 -->
+  <section class="slide cover">
+    <div class="eyebrow">START NOW</div>
+    <div class="kpop">이번 주에 할 일은<br><span class="g">딱 3가지</span></div>
+    <div class="grid g3" style="margin-top:32px;width:100%">
+      <div class="card glow"><div class="num">01</div><h3 style="margin-top:10px">채널 개설</h3><p>한국 계정으로(VPN ❌). 영어 채널명·소개.</p></div>
+      <div class="card glow"><div class="num">02</div><h3 style="margin-top:10px">쇼츠 3편</h3><p>#1·#2·#3(가격 박힌 것). 언어 English 체크.</p></div>
+      <div class="card glow"><div class="num">03</div><h3 style="margin-top:10px">YesStyle 제휴</h3><p>가입 후 고정댓글 링크 + Gumroad 맵 초안.</p></div>
+    </div>
+    <p class="sub" style="margin-top:28px">자료: <span class="hl-p">/04_개발/youtube-kfashion-channel/</span> · 마스터 가이드 + 국가별 리서치 + 본 발표자료</p>
+    <div class="pill-row">
+      <span class="badge gold">목표: 6개월 월 $500+</span>
+      <span class="badge green">GOYU STUDIO</span>
+    </div>
+  </section>
+
+</div>
+
+<div class="foot">
+  <div class="brand">GOYU STUDIO · <b>K-FASHION YT</b></div>
+  <div class="nav">
+    <button id="prev" aria-label="이전">‹</button>
+    <span class="counter"><span id="cur">1</span> / <span id="tot">12</span></span>
+    <button id="next" aria-label="다음">›</button>
+  </div>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let idx = 0;
+  const elCur = document.getElementById('cur');
+  const elProg = document.getElementById('progress');
+  document.getElementById('tot').textContent = total;
+
+  function show(n) {
+    idx = Math.max(0, Math.min(total - 1, n));
+    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    elCur.textContent = idx + 1;
+    elProg.style.width = ((idx + 1) / total * 100) + '%';
+    slides[idx].scrollTop = 0;
+  }
+  function next() { show(idx + 1); }
+  function prev() { show(idx - 1); }
+
+  document.getElementById('next').addEventListener('click', next);
+  document.getElementById('prev').addEventListener('click', prev);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(total - 1);
+  });
+  // swipe (mobile)
+  let x0 = null;
+  document.addEventListener('touchstart', e => x0 = e.touches[0].clientX, {passive:true});
+  document.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 50) (dx < 0 ? next() : prev());
+    x0 = null;
+  }, {passive:true});
+
+  show(0);
+</script>
+</body>
+</html>
