@@ -21,7 +21,7 @@
 | F | 仕入価格(₩) | 입력 |
 | G | 国際送料(¥) | 입력 |
 | H | 目標利益(¥) | 입력 |
-| I | 為替(₩/¥) | 입력(기본 9.3, 수시 갱신) |
+| I | 為替(₩/¥) | **자동** `=GOOGLEFINANCE("CURRENCY:JPYKRW")` (I2만 라이브, I3↓는 `=$I$2` 참조 → 호출 1회) |
 | **J** | 原価(¥) | **자동** `=F/I+G` |
 | **K** | 販売価格(¥) | **자동** `=(J+H)/0.903` (10엔 반올림) |
 | **L** | 課税価格(¥) | **자동** `=K*0.6` |
@@ -33,8 +33,9 @@
 | R | 在庫状態 | 스크립트 자동/수동 (在庫OK·品切れ·要確認) |
 | **S** | 経過日 | **자동** `=TODAY()-Q` |
 | **T** | アラート | **자동** `경과 3일↑ → 要確認` |
+| U | **品切れキーワード(任意)** | 입력 ← 사이트별 품절 문구를 `|`로 구분 입력(비우면 기본세트 사용) |
 
-> 마진식은 11번 문서와 동일. 환율(I)만 가끔 갱신하면 전 행 판매가·이익 재계산.
+> 마진식은 11번 문서와 동일. **환율(I)은 GOOGLEFINANCE로 자동** — I2에 `=GOOGLEFINANCE("CURRENCY:JPYKRW")`(1JPY당 KRW≈9.3), I3 이하는 `=$I$2` 참조(호출 1회·약 20분 지연 갱신). 환율 바뀌면 전 행 판매가·이익 자동 재계산.
 
 ---
 
@@ -43,10 +44,11 @@
 **확장프로그램 → Apps Script**에 아래 붙여넣고 저장 → `setupDailyTrigger` 1회 실행(권한 허용) → **매일 자동 실행**.
 
 ```javascript
-// === BUYMA 재고 자동체크 (매일) ===
-const COL = { URL: 16, CHECKED: 17, STATUS: 18 }; // P=16, Q=17, R=18
-const SOLDOUT_WORDS = ['품절','sold out','soldout','품 절','매진','在庫なし','SOLD OUT','일시품절','재입고'];
-const STALE_DAYS = 3;
+// === BUYMA 재고 자동체크 v2 (매일 · 사이트별 키워드 + SPA 감지) ===
+const COL = { BRAND:2, NAME:3, URL:16, CHECKED:17, STATUS:18, KEYWORDS:21 }; // P,Q,R,U
+const DEFAULT_WORDS = ['품절','sold out','soldout','매진','在庫なし','一時品切れ','일시품절','재입고 알림','out of stock'];
+// SPA(자바스크립트 렌더) 신호 — 본문이 거의 비어있으면 키워드 판별 불가로 표시
+const SPA_HINTS = ['__next_data__','window.__nuxt__','id="root"','id="app"','ng-app'];
 
 function checkStockDaily() {
   const sh = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
@@ -58,15 +60,25 @@ function checkStockDaily() {
     const url = sh.getRange(r, COL.URL).getValue();
     if (!url || String(url).indexOf('example.com') > -1) continue; // 미입력/샘플 스킵
 
+    // 행별 커스텀 키워드(U열, | 구분) 우선, 없으면 기본세트
+    const custom = String(sh.getRange(r, COL.KEYWORDS).getValue() || '').trim();
+    const words = custom ? custom.split('|').map(s => s.trim()).filter(Boolean) : DEFAULT_WORDS;
+
     let status = '要確認';
     try {
       const res = UrlFetchApp.fetch(url, { muteHttpExceptions: true, followRedirects: true,
         headers: { 'User-Agent': 'Mozilla/5.0' } });
       const code = res.getResponseCode();
       if (code >= 200 && code < 400) {
-        const html = res.getContentText().toLowerCase();
-        const sold = SOLDOUT_WORDS.some(w => html.indexOf(w.toLowerCase()) > -1);
-        status = sold ? '品切れ' : '在庫OK';
+        const raw = res.getContentText();
+        const html = raw.toLowerCase();
+        const sold = words.some(w => html.indexOf(w.toLowerCase()) > -1);
+        // 본문 텍스트가 빈약 + SPA 신호 → 자바스크립트 렌더라 판별 불가
+        const textLen = raw.replace(/<[^>]+>/g, '').replace(/\s+/g, '').length;
+        const isSPA = SPA_HINTS.some(h => html.indexOf(h) > -1) && textLen < 1200;
+        if (sold) status = '品切れ';
+        else if (isSPA) status = '要確認(SPA·手動)';
+        else status = '在庫OK';
       } else {
         status = '要確認(HTTP ' + code + ')';
       }
@@ -74,10 +86,10 @@ function checkStockDaily() {
       status = '要確認(取得失敗)';
     }
 
-    sh.getRange(r, COL.STATUS).setValue(status);              // R: 在庫状態
-    sh.getRange(r, COL.CHECKED).setValue(today);              // Q: 最近確認日 갱신
-    if (status.indexOf('品切れ') > -1 || status.indexOf('要確認') > -1) {
-      alerts.push(`${sh.getRange(r,2).getValue()} / ${sh.getRange(r,3).getValue()} → ${status}`);
+    sh.getRange(r, COL.STATUS).setValue(status);   // R: 在庫状態
+    sh.getRange(r, COL.CHECKED).setValue(today);   // Q: 最近確認日 갱신
+    if (status !== '在庫OK') {
+      alerts.push(`${sh.getRange(r,COL.BRAND).getValue()} / ${sh.getRange(r,COL.NAME).getValue()} → ${status}`);
     }
     Utilities.sleep(1500); // 사이트 부담·차단 방지
   }
@@ -109,6 +121,11 @@ function setupDailyTrigger() {
 | **품절 감지**(SPA·JS 렌더 사이트) | 🔴 **불가** | UrlFetchApp은 원시 HTML만 → JS로 그리는 재고는 못 읽음. 한국몰 다수가 이 케이스 |
 | **로그인·봇차단(Cloudflare) 페이지** | 🔴 불가 | 접근 차단 → '要確認'으로 표시됨 |
 | 무신사 등 대형몰 상세 | 🟡 일부 | 구조 바뀌면 깨짐. 키워드 방식이라 오탐 가능 |
+
+**v2 개선점:**
+- **사이트별 품절 키워드(U열):** 사입처마다 "품절/sold out/일시품절" 문구가 달라 → 행별로 `|`로 지정하면 정확도↑ (비우면 기본세트).
+- **SPA 자동 감지:** 본문이 거의 비고 `__NEXT_DATA__`/`id="app"` 등 신호가 보이면 `要確認(SPA·手動)`으로 표시 → "재고OK 오판"을 막음(읽을 수 없음을 솔직히 알림).
+- **환율 자동:** I열 GOOGLEFINANCE로 매일 자동 → 판매가·이익 자동 재계산.
 
 **현실 운영법:**
 - 자동체크는 **1차 필터**(확실한 품절·접근불가만 거름) + **오래된 행 리마인더**로 쓴다.
