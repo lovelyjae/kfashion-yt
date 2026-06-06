@@ -25,11 +25,13 @@
 | 10 | [BUYMA 일본판매 분석](10_BUYMA_일본판매_분석.md) | 실제 매출(GMV 533억엔) + 유튜브 타겟 불일치 + Path A/B |
 | 11 | [BUYMA 무재고 4주 테스트 플랜](11_BUYMA_4주테스트_실행플랜.md) | 셀러등록→브랜드15→마진계산→주문/배송→Go/No-Go + Qoo10 답 |
 | 12 | [BUYMA 출품샘플5 + 자동화](12_BUYMA_출품샘플5_자동화.md) | 일본어 제목·설명 5종 + 안전 자동화(공식 CSV+시트) |
+| 13 | [BUYMA 시트템플릿 + 자동체크](13_BUYMA_시트템플릿_자동체크.md) | 마진 자동계산 시트 + 매일 재고체크 Apps Script + 한계 |
 
 ## 📦 상품 (product/)
 - [표지 cover.png](product/cover.png) — A4 1600×2263 / [크몽 표지 kmong_cover.png](product/kmong_cover.png) — 652×488
 - [Ch.2 Tax Refund 챕터](product/02_TaxRefund_chapter.md) · [Ch.3 성수 챕터](product/03_Seongsu_chapter.md) · [Ch.4 매장 디렉토리 50](product/04_store_directory.md)
 - [상세페이지 카피(크몽+Gumroad)](product/kmong_listing_copy.md)
+- [BUYMA 재고·마진 시트(CSV 임포트용)](product/buyma_inventory_template.csv) — Google Sheets로 가져오기
 - 판매: **Gumroad(글로벌 메인)** + 크몽(보조·국내) · 가격 $19 (베타 $12)
 - ⚠️ 크몽은 타겟 어긋남(영문·외국인) → 보조채널. 크몽 규정(AI창작물·외부채널 금지) 준수 필요
 
