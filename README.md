@@ -29,13 +29,15 @@
 | 14 | [대본 A 제작킷](14_대본A_제작킷.md) | 첫 영상 실제 제작 — TTS·B롤·자막·메타데이터·CapCut 조립 |
 | 15 | [BUYMA 일괄출품 변환 가이드](15_BUYMA_일괄출품_변환가이드.md) | CSV→공식 일괄출품(items/colorsizes)·본문·**이미지 규약(카탈로그 출품)** |
 | 16 | [BUYMA 파워셀러·상품군 분석](16_BUYMA_파워셀러_상품군_분석.md) | 한국 파워셀러 5인 + 인기 상품군 + 솔로 전략(검증 3회) |
-| 17 | [상품군·초보허들·차별화 전략](17_BUYMA_상품군_초보허들_차별화전략.md) | 럭셔리/스포츠/키즈/소품 허들등급 + 캐릭터 "소미" 차별화 전략 |
+| 17 | [상품군·초보허들·차별화 전략](17_BUYMA_상품군_초보허들_차별화전략.md) | 럭셔리/스포츠/키즈/소품 허들등급 + **꿀달이·또용이 캐릭터** 차별화 |
+| 18 | [발송방식·고가품 부담](18_BUYMA_발송방식_고가품_부담.md) | 직송/검품발송대행/직접 비교 + 카드 동봉 해법 + 고가품 세관·자본·정품 부담 |
 
 ## 📦 상품 (product/)
 - [표지 cover.png](product/cover.png) — A4 1600×2263 / [크몽 표지 kmong_cover.png](product/kmong_cover.png) — 652×488
 - [Ch.2 Tax Refund 챕터](product/02_TaxRefund_chapter.md) · [Ch.3 성수 챕터](product/03_Seongsu_chapter.md) · [Ch.4 매장 디렉토리 50](product/04_store_directory.md)
 - [상세페이지 카피(크몽+Gumroad)](product/kmong_listing_copy.md)
 - [BUYMA 재고·마진 시트(CSV 임포트용)](product/buyma_inventory_template.csv) — Google Sheets로 가져오기
+- 캐릭터 마스코트: product/characters/kkuldal.png(꿀달이) · ttoyong.png(또용이) — 프로필·포스트·동봉카드용
 - 판매: **Gumroad(글로벌 메인)** + 크몽(보조·국내) · 가격 $19 (베타 $12)
 - ⚠️ 크몽은 타겟 어긋남(영문·외국인) → 보조채널. 크몽 규정(AI창작물·외부채널 금지) 준수 필요
 
