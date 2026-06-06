@@ -20,11 +20,15 @@
 | 05 | [합법 AI 가상피팅 워크플로우](05_AI가상피팅_합법워크플로우.md) | 라이선스→Kling→고지→쇼츠, 6단계 체크리스트 |
 | 06 | [채널셋업·상품목차·첫대본](06_채널셋업_상품목차_첫대본.md) | 채널명 5종 + 상품 목차 + 롱폼 대본 A·B 개요 |
 | 07 | [대본 A 풀 영어 스크립트](07_대본A_TaxRefund_풀스크립트.md) | Tax Refund 롱폼, TTS 복붙용 완성 대본 |
+| 08 | [대본 B 풀 영어 스크립트](08_대본B_Acubi_풀스크립트.md) | Acubi 트렌드+구매처 롱폼, TTS 복붙용 |
+| 09 | [성수 B롤 원정 샷리스트](09_성수_B롤_원정_샷리스트.md) | 한 번에 5편치 촬영 체크리스트 |
 
 ## 📦 상품 (product/)
-- [표지 cover.png](product/cover.png) — Seoul K-Fashion Shopping Guide 2026 (A4)
-- [Tax Refund 챕터 전문](product/02_TaxRefund_chapter.md) — 판매용 영어 본문 초안
-- 판매: Gumroad(글로벌) + 크몽(국내) · 가격 $19 (베타 $12)
+- [표지 cover.png](product/cover.png) — A4 1600×2263 / [크몽 표지 kmong_cover.png](product/kmong_cover.png) — 652×488
+- [Ch.2 Tax Refund 챕터](product/02_TaxRefund_chapter.md) · [Ch.3 성수 챕터](product/03_Seongsu_chapter.md) · [Ch.4 매장 디렉토리 50](product/04_store_directory.md)
+- [상세페이지 카피(크몽+Gumroad)](product/kmong_listing_copy.md)
+- 판매: **Gumroad(글로벌 메인)** + 크몽(보조·국내) · 가격 $19 (베타 $12)
+- ⚠️ 크몽은 타겟 어긋남(영문·외국인) → 보조채널. 크몽 규정(AI창작물·외부채널 금지) 준수 필요
 
 ## 🖼️ 썸네일 (thumbs/)
 쇼츠 규격 1080×1920 PNG 10종 + 갤러리. 생성기 `_gen.py`(HTML→Chrome 렌더).
