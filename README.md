@@ -22,6 +22,8 @@
 | 07 | [대본 A 풀 영어 스크립트](07_대본A_TaxRefund_풀스크립트.md) | Tax Refund 롱폼, TTS 복붙용 완성 대본 |
 | 08 | [대본 B 풀 영어 스크립트](08_대본B_Acubi_풀스크립트.md) | Acubi 트렌드+구매처 롱폼, TTS 복붙용 |
 | 09 | [성수 B롤 원정 샷리스트](09_성수_B롤_원정_샷리스트.md) | 한 번에 5편치 촬영 체크리스트 |
+| 10 | [BUYMA 일본판매 분석](10_BUYMA_일본판매_분석.md) | 실제 매출(GMV 533억엔) + 유튜브 타겟 불일치 + Path A/B |
+| 11 | [BUYMA 무재고 4주 테스트 플랜](11_BUYMA_4주테스트_실행플랜.md) | 셀러등록→브랜드15→마진계산→주문/배송→Go/No-Go + Qoo10 답 |
 
 ## 📦 상품 (product/)
 - [표지 cover.png](product/cover.png) — A4 1600×2263 / [크몽 표지 kmong_cover.png](product/kmong_cover.png) — 652×488
