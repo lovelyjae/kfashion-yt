@@ -27,6 +27,7 @@
 | 12 | [BUYMA 출품샘플5 + 자동화](12_BUYMA_출품샘플5_자동화.md) | 일본어 제목·설명 5종 + 안전 자동화(공식 CSV+시트) |
 | 13 | [BUYMA 시트템플릿 + 자동체크](13_BUYMA_시트템플릿_자동체크.md) | 마진 자동계산 + 매일 재고체크 v2(사이트별 키워드·SPA감지·GOOGLEFINANCE 환율) |
 | 14 | [대본 A 제작킷](14_대본A_제작킷.md) | 첫 영상 실제 제작 — TTS·B롤·자막·메타데이터·CapCut 조립 |
+| 15 | [BUYMA 일괄출품 변환 가이드](15_BUYMA_일괄출품_변환가이드.md) | CSV→공식 일괄출품(items/colorsizes)·본문·**이미지 규약(카탈로그 출품)** |
 
 ## 📦 상품 (product/)
 - [표지 cover.png](product/cover.png) — A4 1600×2263 / [크몽 표지 kmong_cover.png](product/kmong_cover.png) — 652×488
