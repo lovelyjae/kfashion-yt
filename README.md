@@ -24,6 +24,7 @@
 | 09 | [성수 B롤 원정 샷리스트](09_성수_B롤_원정_샷리스트.md) | 한 번에 5편치 촬영 체크리스트 |
 | 10 | [BUYMA 일본판매 분석](10_BUYMA_일본판매_분석.md) | 실제 매출(GMV 533억엔) + 유튜브 타겟 불일치 + Path A/B |
 | 11 | [BUYMA 무재고 4주 테스트 플랜](11_BUYMA_4주테스트_실행플랜.md) | 셀러등록→브랜드15→마진계산→주문/배송→Go/No-Go + Qoo10 답 |
+| 12 | [BUYMA 출품샘플5 + 자동화](12_BUYMA_출품샘플5_자동화.md) | 일본어 제목·설명 5종 + 안전 자동화(공식 CSV+시트) |
 
 ## 📦 상품 (product/)
 - [표지 cover.png](product/cover.png) — A4 1600×2263 / [크몽 표지 kmong_cover.png](product/kmong_cover.png) — 652×488
