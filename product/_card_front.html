@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1300px;height:800px;overflow:hidden}
+.card{width:1300px;height:800px;position:relative;
+  background:linear-gradient(150deg,#f3e6d4 0%,#ecd8bf 60%,#e6cdb0 100%);
+  font-family:'Hiragino Maru Gothic ProN','Apple SD Gothic Neo','Hiragino Sans',sans-serif;
+  display:flex;flex-direction:column;align-items:center;padding:60px 70px;overflow:hidden}
+.bleed{position:absolute;inset:0;border:2px dashed transparent} /* bleed guide off in final */
+.hello{position:relative;z-index:2;font-size:34px;font-weight:900;color:#c2683f;letter-spacing:2px;margin-top:6px}
+.hello .kr{color:#a8472a}
+.chars{position:relative;z-index:2;display:flex;gap:30px;align-items:flex-end;margin-top:6px}
+.chars img{width:300px;height:360px;object-fit:contain;filter:drop-shadow(0 14px 20px rgba(150,90,50,.25))}
+.thanks{position:relative;z-index:2;margin-top:4px;font-size:74px;font-weight:900;color:#5a3220;letter-spacing:-1px;line-height:1}
+.thanks .heart{color:#e06b8b}
+.sub{position:relative;z-index:2;margin-top:20px;font-size:30px;font-weight:800;color:#7a4a30;text-align:center;line-height:1.4}
+.shop{position:absolute;bottom:46px;z-index:2;font-size:30px;font-weight:900;color:#b85c38;letter-spacing:2px}
+.deco{position:absolute;z-index:1;font-size:60px;opacity:.5}
+.d1{top:60px;left:70px}.d2{top:80px;right:90px}.d3{bottom:120px;right:120px}
+</style></head><body>
+<div class="card">
+  <div class="deco d1">🛍️</div><div class="deco d2">✨</div><div class="deco d3">🎀</div>
+  <div class="hello"><span class="kr">안녕!</span> ソウルからお届け 🇰🇷</div>
+  <div class="chars">
+    <img src="characters/kkuldal.png" alt="꿀달이">
+    <img src="characters/ttoyong.png" alt="또용이">
+  </div>
+  <div class="thanks">ありがとうございます<span class="heart">♡</span></div>
+  <div class="sub">ソウル在住バイヤーが、現地でセレクト・検品してお届けしました</div>
+  <div class="shop">＿＿＿＿＿ SEOUL SELECT ＿＿＿＿＿</div>
+</div></body></html>
