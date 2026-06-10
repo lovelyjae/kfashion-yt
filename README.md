@@ -48,7 +48,7 @@
 - [Ch.2 Tax Refund 챕터](product/02_TaxRefund_chapter.md) · [Ch.3 성수 챕터](product/03_Seongsu_chapter.md) · [Ch.4 매장 디렉토리 50](product/04_store_directory.md)
 - [상세페이지 카피(크몽+Gumroad)](product/kmong_listing_copy.md)
 - [BUYMA 재고·마진 시트(CSV 임포트용)](product/buyma_inventory_template.csv) — Google Sheets로 가져오기
-- 캐릭터 마스코트: product/characters/kkuldal.png(=**ハニー**, 꿀달이·호랑이) · ttoyong.png(=**ヨン**, 또용이·용) — 샵 **Honey Seoul**, 프로필·포스트·동봉카드용
+- 캐릭터 마스코트(⚠️원본 파일명 반대): **hanny_tiger.png**(=ハニー·꿀달이·호랑이, 원본 ttoyong.png) · **yong_dragon.png**(=ヨン·또용이·용, 원본 kkuldal.png). 프로필 아이콘 **icon_hanny.png**(600×600). 샵 **Honey Seoul**
 - 판매: **Gumroad(글로벌 메인)** + 크몽(보조·국내) · 가격 $19 (베타 $12)
 - ⚠️ 크몽은 타겟 어긋남(영문·외국인) → 보조채널. 크몽 규정(AI창작물·외부채널 금지) 준수 필요
 

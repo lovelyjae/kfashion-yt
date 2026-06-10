@@ -8,8 +8,10 @@
 | 항목 | 확정값 |
 |---|---|
 | **샵명** | **Honey Seoul / ハニーソウル** (꿀달이의 '꿀=honey' 정체성 계승) |
-| **메인 마스코트** | **ハニー** = 꿀달이(**호랑이 🐯** 귀·꼬리, 남아) · `characters/kkuldal.png` |
-| **서브 마스코트** | **ヨン** = 또용이(**용 🐉** 날개) · `characters/ttoyong.png` |
+| **메인 마스코트** | **ハニー** = 꿀달이(**호랑이 🐯** 귀·꼬리, 남아) · **`characters/hanny_tiger.png`** (원본 ttoyong.png — 파일명 주의) · 아이콘 `icon_hanny.png` |
+| **서브 마스코트** | **ヨン** = 또용이(**용 🐉** 날개) · **`characters/yong_dragon.png`** (원본 kkuldal.png) |
+
+> ⚠️ 원본 파일명이 반대로 저장돼 있었음: `ttoyong.png`=실제 호랑이(ハニー), `kkuldal.png`=실제 용(ヨン). 앞으로는 **hanny_tiger.png / yong_dragon.png** 사용.
 | **시그니처 인사** | **"안녕!"** 으로 시작 · **"또 봐요〜👋"** 로 마무리 |
 | **타깃** | 일본 BUYMA 구매자(한국 패션·소품) |
 
