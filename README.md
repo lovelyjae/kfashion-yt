@@ -38,13 +38,14 @@
 | 23 | [꿀달이 4컷 포스트 1편](23_꿀달이_4컷포스트_1편.md) | 쇼퍼포스트 4컷 스토리보드 + 일본어 본문(붙여넣기) |
 | 24 | [첫 출품 소품 18개 리스트](24_첫출품_소품18_리스트.md) | 브랜드·카탈로그·예상마진 시트(전부 면세) + 출품순서 |
 | 25 | [⭐ BUYMA 실행 체크리스트](25_BUYMA_실행_체크리스트.md) | 10~24 요약 한 장 — 6스텝 체크박스 + 핵심 숫자 + 절대규칙 |
+| 26 | [🍯 Honey Seoul 브랜드 아이덴티티](26_HoneySeoul_브랜드_아이덴티티.md) | 샵명·마스코트(ハニー&ヨン)·보이스·컬러·프로필문 단일 기준 |
 
 ## 📦 상품 (product/)
 - [표지 cover.png](product/cover.png) — A4 1600×2263 / [크몽 표지 kmong_cover.png](product/kmong_cover.png) — 652×488
 - [Ch.2 Tax Refund 챕터](product/02_TaxRefund_chapter.md) · [Ch.3 성수 챕터](product/03_Seongsu_chapter.md) · [Ch.4 매장 디렉토리 50](product/04_store_directory.md)
 - [상세페이지 카피(크몽+Gumroad)](product/kmong_listing_copy.md)
 - [BUYMA 재고·마진 시트(CSV 임포트용)](product/buyma_inventory_template.csv) — Google Sheets로 가져오기
-- 캐릭터 마스코트: product/characters/kkuldal.png(꿀달이) · ttoyong.png(또용이) — 프로필·포스트·동봉카드용
+- 캐릭터 마스코트: product/characters/kkuldal.png(=**ハニー**, 꿀달이·호랑이) · ttoyong.png(=**ヨン**, 또용이·용) — 샵 **Honey Seoul**, 프로필·포스트·동봉카드용
 - 판매: **Gumroad(글로벌 메인)** + 크몽(보조·국내) · 가격 $19 (베타 $12)
 - ⚠️ 크몽은 타겟 어긋남(영문·외국인) → 보조채널. 크몽 규정(AI창작물·외부채널 금지) 준수 필요
 
